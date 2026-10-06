@@ -1,0 +1,64 @@
+<Window x:Class="Project.Map"
+        Loaded="Window_Loaded"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Jelgava POI Map" Height="935" Width="1300"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <DockPanel>
+    <ToolBar DockPanel.Dock="Top" Background="Black">
+            <Grid Width="1250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.38*"/>
+                    <ColumnDefinition Width="0.63*"/>
+                    <ColumnDefinition Width="0.76*"/>
+                    <ColumnDefinition Width="0.63*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.7*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" SelectedIndex="0" Name="categoryComboBox" Width="100" SelectionChanged="categoryComboBox_SelectionChanged" Foreground="Black">
+                </ComboBox>
+                <TextBlock Grid.Column="1" Margin="10 4 0 0" Foreground="White" FontWeight="Bold" FontFamily="Verdana">Filter: |</TextBlock>
+                <CheckBox Grid.Column="2" Name="RatingCheckBox" Content="4+ Rating |" Click="FilterCheckBoxR_Click" Margin="0,5,0,0" Foreground="White" FontWeight="Bold" FontFamily="Verdana"></CheckBox>
+                <CheckBox Grid.Column="3" Name="DistanceCheckBox" Content="1km Distance |" Click="FilterCheckBoxD_Click" Margin="0,5,0,0" Foreground="White" FontWeight="Bold" FontFamily="Verdana"></CheckBox>
+                <CheckBox Grid.Column="4" Name="Open247CheckBox" Content="24/7 Open |" Click="FilterCheckBoxO_Click" Margin="0,5,0,0" Foreground="White" FontWeight="Bold" FontFamily="Verdana"></CheckBox>
+                <TextBox Grid.Column="5" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Width="120" Height="20" HorizontalAlignment="Right" Margin="0,0,53,0"/>
+                <Button Grid.Column="5" Content="Search" Click="Search_Click" HorizontalAlignment="Right" Width="50" VerticalAlignment="Center" Foreground="White" Background="Black" FontFamily="Verdana" BorderBrush="White"/>
+                <CheckBox Grid.Column="6" x:Name="LineCheckBox" Content="Show Distance Lines" 
+                        Margin="10, 5, 0, 0" VerticalAlignment="Top" 
+                        Checked="LineCheckBox_Checked" 
+                        Unchecked="LineCheckBox_Unchecked" 
+                        Foreground="White" FontWeight="Bold" FontFamily="Verdana"/>
+                <Button Grid.Column="8" Width="100" x:Name="POIHuntButton" Content="POI Hunt" Foreground="Black" Background="Red" FontWeight="Bold" BorderBrush="White"></Button>
+                <TextBlock Grid.Column="7" x:Name="HighScore" Visibility="Hidden" Margin="0,3,0,0" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right"></TextBlock>
+            </Grid>
+        </ToolBar>
+        <Grid x:Name="mainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Canvas x:Name="MapCanvas">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="MapScaleTransform" ScaleX="1" ScaleY="1"/>
+                            <TranslateTransform x:Name="MapTranslateTransform"/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Image Source="C:\Users\vadim\Desk\Univer\C#\2. Kurss\1. sem\Project\Project\pics\jelgava_map.jpg"
+                           Width="1300" Height="919"/>
+                </Canvas>
+            </ScrollViewer>
+
+            <Button Grid.Row="1" Content="List view" Click="ToListView_Click" 
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                    Margin="20" Height="50" Width="150" FontSize="26"/>
+        </Grid>
+    </DockPanel>
+</Window>
